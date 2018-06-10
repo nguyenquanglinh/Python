@@ -42,33 +42,6 @@ class Facebook:
         self.driver.find_element_by_xpath(x_paths['submitButton']).click()
 
 
-class AddFriend:
-    def __init__(self, face_book):
-        self.face_book = face_book
-
-    def add_friends(self):
-        self.face_book.driver.get("https://www.facebook.com/find-friends/browser/")
-        import time
-        time.sleep(5)
-        while True:
-            ds = self.face_book.driver.find_elements_by_xpath("//button[text()='Thêm bạn bè']")
-            for i in ds:
-                try:
-                    self.face_book.driver.execute_script("window.scrollTo(0,1080)")
-                    i.click()
-                    time.sleep(3)
-                    need_close = self.driver.find_elements_by_xpath("//div[contains(text(),'Đề xuất kết bạn cho')]")
-                    if len(need_close) == 1:
-                        self.driver.find_element_by_xpath("(//a[text()='Đóng'])[2]").click()
-                    else:
-                        ex = self.face_book.driver.find_elements_by_xpath("//h3[text()='Người này có biết bạn không?']")
-                        if len(ex) == 1:
-                            self.face_book.driver.find_element_by_xpath("//a[text()='Hủy']").click()
-                    time.sleep(1)
-                except:
-                    pass
-
-
 class AddFriendToGroup:
     def __init__(self, face_book):
         self.face_book = face_book
@@ -91,12 +64,42 @@ class AddFriendToGroup:
                         self.face_book.driver.get(str)
                         time.sleep(2)
                 except:
+                    print('lỗi')
                     pass
             time.sleep(15)
 
 
-user_name = "nguyen2anh2"
-pass_word = "Trang290994"
+class AddFriend:
+    def __init__(self, face_book):
+        self.face_book = face_book
+
+    def add_friends(self):
+        self.face_book.driver.get("https://www.facebook.com/find-friends/browser/")
+        import time
+        time.sleep(3)
+        while True:
+            ds = self.face_book.driver.find_elements_by_xpath("//button[text()='Thêm bạn bè']")
+            for i in ds:
+                try:
+                    i.click()
+                    time.sleep(3)
+                    need_close = self.face_book.driver.find_elements_by_xpath(
+                        "//div[contains(text(),'Đề xuất kết bạn cho')]")
+                    ex = self.face_book.driver.find_elements_by_xpath("//h3[text()='Người này có biết bạn không?']")
+                    if len(need_close) == 1:
+                        self.face_book.driver.find_element_by_xpath("(//a[text()='Đóng'])[2]").click()
+                        print('bấm đóng')
+                    if len(ex) == 1:
+                        time.sleep(1)
+                        self.face_book.driver.find_element_by_xpath("//a[text()='Hủy']").click()
+                        print('hủy')
+                except:
+                    pass
+
+
+user_name = "linnguyen99x2000"
+pass_word = "Nguyenlinh99x"
+
 str_r = "https://www.facebook.com/groups/1914454625240523/"
 facebook = Facebook(user_name, pass_word)
 add_friend = AddFriend(facebook)
