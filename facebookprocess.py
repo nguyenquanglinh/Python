@@ -102,5 +102,6 @@ pass_word = "def"
 
 str_r = "https://www.facebook.com/groups/1914454625240523/"
 facebook = Facebook(user_name, pass_word)
+
 add_friend = AddFriend(facebook)
 add_friend.add_friends()
