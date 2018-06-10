@@ -97,8 +97,8 @@ class AddFriend:
                     pass
 
 
-user_name = "linnguyen99x2000"
-pass_word = "Nguyenlinh99x"
+user_name = "abc"
+pass_word = "def"
 
 str_r = "https://www.facebook.com/groups/1914454625240523/"
 facebook = Facebook(user_name, pass_word)
